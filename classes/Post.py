@@ -8,19 +8,34 @@ class Post:
     """
     A class used to represent post on Nitzagram
     """
-    def __init__(self): #TODO: add parameters
-        #TODO: write me!
-        pass
+    def __init__(self, loc, des, username):
+        self.location = loc
+        self.description = des
+        self.username = username
+        self.counter_likes = 0
+        self.comments = []
+        self.comments_display_index = 0
 
     def display(self):
-        """
-        Display the Post image/Text, description, location, likes and comments
-        on screen
+        def display_above():
+            position_index_user = (USER_NAME_X_POS,USER_NAME_Y_POS)
+            position_index_loc = (LOCATION_TEXT_X_POS,LOCATION_TEXT_Y_POS)
+            position_index_des = (DESCRIPTION_TEXT_X_POS,DESCRIPTION_TEXT_Y_POS)
+            display_font = pygame.font.SysFont('chalkduster.ttf',
+                                               COMMENT_TEXT_SIZE)
+            username_to_display = display_font.render(self.username,
+                                                            True, LIGHT_GRAY)
+            screen.blit(username_to_display, position_index_user)
+            location_to_display = display_font.render(self.location,
+                                                            True, LIGHT_GRAY)
+            screen.blit(location_to_display, position_index_loc)
+            description_to_display = display_font.render(self.description,
+                                                            True, LIGHT_GRAY)
+            screen.blit(description_to_display,position_index_des)
 
-        :return: None
-        """
-        # TODO: write me!
-        pass
+
+            
+
 
 
     def display_comments(self):
@@ -48,6 +63,16 @@ class Post:
             position_index += 1
             if i >= NUM_OF_COMMENTS_TO_DISPLAY - 1:
                 break
+
+    def add_like(self):
+        self.counter_likes += 1
+
+    def add_comments(self, text):
+        self.comments.append(Comment(text))
+
+
+
+class Comment:
 
 
 
